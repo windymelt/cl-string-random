@@ -54,9 +54,10 @@
     (:EVERYTHING (code-char (alexandria:random-elt *printable-ascii-list*)))
     (as-is as-is)))
 
-(defun string-random (regex-string)
+(defun string-random (regex-string &key verbose)
   (string (iter
             (initially (setf tree (cl-ppcre:parse-string regex-string)))
+            (when verbose (format *error-output* "~W~%" tree))
             (for tree next (do-reduction tree))
             (for ptree previous tree initially nil)
             (when (equal tree ptree) (leave tree)))))
