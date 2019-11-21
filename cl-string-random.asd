@@ -6,7 +6,7 @@
   :components ((:module "src"
                 :components
                 ((:file "main"))))
-  :description ""
+  :description "Utility to generate string which matches specific regexp"
   :long-description
   #.(read-file-string
      (subpathname *load-pathname* "README.markdown"))
