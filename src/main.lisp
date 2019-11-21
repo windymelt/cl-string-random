@@ -12,14 +12,14 @@
          (cy (max cc cd)))
     (code-char (+ cx (random (- cy (+ 1 cx)))))))
 
-(defun printable-ascii-list () (alexandria:iota (- 127 #.(char-code #\Space)) :start #.(char-code #\Space)))
+(defparameter *printable-ascii-list* (make-array '(95) :element-type 'fixnum :adjustable nil :fill-pointer nil :initial-contents (alexandria:iota (- 127 #.(char-code #\Space)) :start #.(char-code #\Space))))
 
 ;;; 反転文字クラスを解決する関数
 ;;; printableなASCIIから奪っていく
 (defun solve-inverted-char-class-range (xs) ;; '(#\a #\b (:RANGE #\v #\x)) みたいなのを想定している
   (code-char
    (alexandria:random-elt
-    (let ((codes (printable-ascii-list))) ;; printableなものだけ使う
+    (let ((codes *printable-ascii-list*)) ;; printableなものだけ使う
       (iter
         (for x in xs)
         (match x
@@ -51,7 +51,7 @@
     ((list* :CHAR-CLASS cls) (alexandria:random-elt cls))
     ((list* :INVERTED-CHAR-CLASS cls) (solve-inverted-char-class-range cls))
     (:DIGIT-CLASS (char (format nil "~A" (random 10)) 0))
-    (:EVERYTHING (code-char (alexandria:random-elt (printable-ascii-list))))
+    (:EVERYTHING (code-char (alexandria:random-elt *printable-ascii-list*)))
     (as-is as-is)))
 
 (defun string-random (regex-string)
