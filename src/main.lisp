@@ -50,6 +50,7 @@
        (otherwise `(:SEQUENCE ,@(make-list (+ n (random (+ 1 (- m n)))) :initial-element tr)))))
     ((list* :CHAR-CLASS cls) (alexandria:random-elt cls))
     ((list* :INVERTED-CHAR-CLASS cls) (solve-inverted-char-class-range cls))
+    (:WHITESPACE-CHAR-CLASS (alexandria:random-elt '(#\Space #\Tab)))
     (:DIGIT-CLASS (char (format nil "~A" (random 10)) 0))
     (:EVERYTHING (code-char (alexandria:random-elt *printable-ascii-list*)))
     (as-is as-is)))
