@@ -8,7 +8,7 @@
 ;; NOTE: To run this test file, execute `(asdf:test-system :cl-string-random)' in your Lisp.
 
 (defparameter *regexes*
-  '("" "a" "ab" "[ab]" "a|b" "(ab)" "a*" "a+" "(ab)*" "(ab)+" "(ab){4,10}" "(日|本|語)*" "\\d" "\\d{3}-\\d{4}"))
+  '("" "a" "ab" "[ab]" "a|b" "(ab)" "a*" "a+" "(ab)*" "(ab)+" "(ab){4,10}" "(日|本|語)*" "\\d" "\\d{3}-\\d{4}" "\\s\\s\\s\\s"))
 
 (deftest test-target-1
   (iter (for regex in *regexes*)
