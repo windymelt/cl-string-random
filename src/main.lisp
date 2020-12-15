@@ -10,7 +10,7 @@
          (cd (char-code d))
          (cx (min cc cd))
          (cy (max cc cd)))
-    (code-char (+ cx (random (- cy (+ 1 cx)))))))
+    (code-char (+ cx (random (+ 1 (- cy cx)))))))
 
 (defparameter *printable-ascii-list* (make-array '(95) :element-type 'fixnum :adjustable nil :fill-pointer nil :initial-contents (alexandria:iota (- 127 #.(char-code #\Space)) :start #.(char-code #\Space))))
 
